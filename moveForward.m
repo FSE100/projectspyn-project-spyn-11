@@ -1,12 +1,18 @@
 function moveForward(brick, time, res)
-    
-    for i = 1:100
-       brick.MoveMotor('AD', 20);
+    % Right motor --> A
+    % Left motor --> D
+
+    brick.MoveMotor('D', 20); 
+    brick.MoveMotor('A', 19.4);
+    for i = 1:time/res
        pause(res);
-       brick.StopMotor('AD');
-       if(brick.ColorCode(2) == 3)
-          brick.beep();
-          pause(4);
-       end
+      % color = brick.ColorCode(2);
+       %if(color == 5)
+        %  brick.StopMotor('AD');
+         % disp("saw red");
+          %pause(4); 
+          %break;
+      % end
     end
+    brick.StopMotor('AD');
 end

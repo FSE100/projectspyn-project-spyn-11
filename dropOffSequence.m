@@ -6,4 +6,10 @@ function dropOffSequence(brick)
     pause(2);
     brick.StopMotor('AD'); 
     % program ends after this function
+    
+    leftdist = 0;
+    rightdist = 0;
+    
+    while(true)
+        
 end

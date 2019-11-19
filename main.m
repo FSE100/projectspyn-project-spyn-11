@@ -1,51 +1,36 @@
-import java.util.ArrayList;
+%j = 0;
+%color = brick.ColorCode(2)
+%while color ~= 2, 3 , 5
+%    color = brick.ColorCode(2)
+%    while(j < getDirection(brick, 0.5, 55, 35))
+%        turn(brick, 1, 55, 1);
+%        moveForward(brick, 2.0, 1)
+%    end
+%end
+%moveForward(brick, 1.0, 0.25)
 
-turnTime = 1.5
-
-%turn(brick, turnTime, 1)
-
-moveForward(brick, 0, 0.2)
 
 
-%dir = getDirection(brick, turnTime, 35)
+%brick.GyroAngle(3)
 
-%for i = 0:dir
-%    turn(brick, turnTime, 1)
+%pause(1)
+
+%turn(brick, 0.5, 50, -1);
+
+%calibrations = zeros(100,1);
+
+%data = zeros(100,2);
+
+%startangle = brick.GyroAngle(3)
+
+%while(isnan(startangle))
+%    brick.GyroCalibrate(3)
+%    startangle = brick.GyroAngle(3)
 %end
 
-function dir = getDirection(brick, turnTime, threshold)
-    import java.util.ArrayList;
+%for i = 1 : 100
+ %   data(i,1) = brick.GyroRate(3);
+    %data(i,2) = brick.GyroAngle(3);
+%end
 
-    A = ArrayList;
-    B = ArrayList;
-    
-    for i = 1:4
-        A.add(brick.UltrasonicDist(1)); % Get distance from in left of robot's original position
-        turn(brick, turnTime, 1);
-        disp("a")
-    end
-    
-    A
-    
-    for i=0:3
-        if(A.get(i) > threshold) % Filtering values
-            B.add(i);
-        end
-    end
-    
-    random = randi([0 B.size()-1]);
-    dir = B.get(random); 
-    % The array list named B holds the indices of the directions that the robot is able to go in (0 = front, 1 = right, 2 = back, 3 = left)
-end
-
-function turn(brick, parameter, direction) % for direction, 1 = right, -1 = left, 2 = back
-    brick.MoveMotor('A', direction*20);
-    brick.MoveMotor('D', direction*-20);
-    pause(parameter);
-    brick.StopMotor('AD');
-    pause(2);
-    %brick.MoveMotorAngleRel('A', 20, -170, 'Coast');
-    %brick.MoveMotorAngleRel('D', 20, 170, 'Coast');
-    
-    
-end
+%data
