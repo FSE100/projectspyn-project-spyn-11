@@ -21,9 +21,5 @@ function x = getDirection(brick, turnTime, speed, threshold)
     random = randi([0 B.size()-1]);
     x = B.get(random);
     disp(B) 
-    while (random > 0)
-    turn(brick, turnTime, speed, 1);
-    random = random -1 
-    end
     % The array list named B holds the indices of the directions that the robot is able to go in (0 = front, 1 = right, 2 = back, 3 = left)
 end

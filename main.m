@@ -9,7 +9,7 @@
 %end
 %moveForward(brick, 1.0, 0.25)
 
-
+calibrate(brick);
 
 %brick.GyroAngle(3)
 
