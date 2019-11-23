@@ -15,7 +15,8 @@ while 1
            
         case 'downarrow'
             disp('Down');
-            brick.MoveMotor('AD', -50);
+            brick.MoveMotor('A', -20);
+            brick.MoveMotor('D', -19);
             
         case 'leftarrow'
             disp('Left');
