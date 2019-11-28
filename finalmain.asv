@@ -3,8 +3,9 @@ ports:
 ultrasonic: 1
 color: 2
 touch: 3
-left:  A
+left: A
 right: D
+
 %}
 
 
