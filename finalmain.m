@@ -27,6 +27,9 @@ while 1
     color = brick.ColorCode(2);
     distance = brick.UltrasonicDist(1);
     
+    %pickedUp Initialization
+    pickedUp = 0;
+    
     %Color Decisions
     if color == 5                      %if color is red stop for 4 sec                   
         disp('red');
@@ -36,7 +39,17 @@ while 1
         brick.MoveMotor('D', motorrf);
         pause(2);
     elseif color == 2 || color == 3    %if color is blue or green, activate keyboard control
-       run('kbrdcontrol');
+        if color == 2
+            if pickedUp == 0 % We only want to run kbrd controls if the robot hasn't picked up the passenger for case "blue"
+                run('kbrdcontrol');
+                pickedUp = 1;
+            end
+        end
+        if color == 3
+            if pickedUp == 1
+                run('kbrdcontrol'); % We only want to run kbrd controls if the robot has picked up the passenger for case "green"
+            end
+        end
     end
     
     %Navigation
