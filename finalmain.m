@@ -34,7 +34,7 @@ while 1
         pause(4); %wait 4 seconds
         brick.MoveMotor('A', motorlf); 
         brick.MoveMotor('D', motorrf);
-        %pause(6);
+        pause(2);
     elseif color == 2 || color == 3    %if color is blue or green, activate keyboard control
        run('kbrdcontrol');
     end
