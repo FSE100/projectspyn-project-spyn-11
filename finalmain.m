@@ -3,8 +3,8 @@ ports:
 ultrasonic: 1
 color: 2
 touch: 3
-left:  A
-right: D
+left motor:  A
+right motor: D
 %}
 
 
@@ -27,44 +27,34 @@ while 1
     color = brick.ColorCode(2);
     distance = brick.UltrasonicDist(1);
     
-    %pickedUp Initialization
-    pickedUp = 0;
-    
     %Color Decisions
     if color == 5                      %if color is red stop for 4 sec                   
         disp('red');
-        brick.StopMotor('AD');
+        brick.StopMotor('AD', 'Brake'); %Brake to prevent going off course
         pause(4); %wait 4 seconds
         brick.MoveMotor('A', motorlf); 
         brick.MoveMotor('D', motorrf);
-        pause(2);
+        %pause(6);
     elseif color == 2 || color == 3    %if color is blue or green, activate keyboard control
-        if color == 2
-            if pickedUp == 0 % We only want to run kbrd controls if the robot hasn't picked up the passenger for case "blue"
-                run('kbrdcontrol');
-                pickedUp = 1;
-            end
-        end
-        if color == 3
-            if pickedUp == 1
-                run('kbrdcontrol'); % We only want to run kbrd controls if the robot has picked up the passenger for case "green"
-            end
-        end
+        run('kbrdcontrol');
+        brick.MoveMotor('A', motorlf);
+        brick.MoveMotor('D', motorrf);
+        pause(6);
     end
     
     %Navigation
     if distance > threshold                %if right wall falls away from right side
-        pause(0.3); %wait to get past wall
-        brick.StopMotor('AD');
+        pause(0.6); %wait to get past wall
+        brick.StopMotor('AD', 'Brake');
         brick.MoveMotor('A', -20);
-        pause(4.2); %turning time
-        brick.StopMotor('A');
+        pause(3.25); %turning time
+        brick.StopMotor('A', 'Brake');
         brick.MoveMotor('A', motorlf); 
         brick.MoveMotor('D', motorrf);
         pause(2);
     end 
     if touch %if hit wall in front
-        pause(4); %keep going forward for a short period of time in order to calibrate
+        pause(1); %keep going forward for a short period of time in order to calibrate
         
         disp('touched');
         brick.StopMotor('AD');          %stop
@@ -72,19 +62,20 @@ while 1
         brick.MoveMotor('A', motorlb);
         brick.MoveMotor('D', motorrb);
         pause(3.5); %time to back up from wall
-        brick.StopMotor('AD'); %stop
+        brick.StopMotor('AD', 'Brake'); %stop
         
+        %theoretically should never get here if previous method right
         if distance < threshold %if there is no wall on the right
             brick.MoveMotor('D', -18.5); 
             pause(3);
-            brick.StopMotor('D');
+            brick.StopMotor('D', 'Brake');
             brick.MoveMotor('A', motorlf); 
             brick.MoveMotor('D', motorrf);
             pause(2);
         else %if there is a wall on the right
             brick.MoveMotor('A', -21);
             pause(3);
-            brick.StopMotor('A');
+            brick.StopMotor('A', 'Brake');
             brick.MoveMotor('A', motorlf); 
             brick.MoveMotor('D', motorrf);
             pause(2);
