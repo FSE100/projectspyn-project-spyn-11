@@ -34,8 +34,9 @@ while 1
         pause(4); %wait 4 seconds
         brick.MoveMotor('A', motorlf); 
         brick.MoveMotor('D', motorrf);
-        %pause(6);
+        pause(0.5);
     elseif color == 2 || color == 3    %if color is blue or green, activate keyboard control
+        disp('blue/green');
         run('kbrdcontrol');
         brick.MoveMotor('A', motorlf);
         brick.MoveMotor('D', motorrf);
@@ -47,7 +48,7 @@ while 1
         pause(0.6); %wait to get past wall
         brick.StopMotor('AD', 'Brake');
         brick.MoveMotor('A', -20);
-        pause(3.25); %turning time
+        pause(2.3); %turning time
         brick.StopMotor('A', 'Brake');
         brick.MoveMotor('A', motorlf); 
         brick.MoveMotor('D', motorrf);
@@ -67,14 +68,14 @@ while 1
         %theoretically should never get here if previous method right
         if distance < threshold %if there is no wall on the right
             brick.MoveMotor('D', -18.5); 
-            pause(3);
+            pause(2.5);
             brick.StopMotor('D', 'Brake');
             brick.MoveMotor('A', motorlf); 
             brick.MoveMotor('D', motorrf);
             pause(2);
         else %if there is a wall on the right
             brick.MoveMotor('A', -21);
-            pause(3);
+            pause(2.5);
             brick.StopMotor('A', 'Brake');
             brick.MoveMotor('A', motorlf); 
             brick.MoveMotor('D', motorrf);
