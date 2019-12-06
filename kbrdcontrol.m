@@ -23,15 +23,15 @@ while 1
             
         case 0
             %disp('No Key Press');
-            brick.StopMotor('AD', 'Coast');
+            brick.StopMotor('ADC', 'Coast');
             
         case 'w'
             %disp('Crane Up');
-            brick.MoveMotorAngleRel('C', 10, -30, 'Brake');
+            brick.MoveMotor('C', -10);
             
         case 's'
             %disp('Crane Down');
-            brick.MoveMotorAngleRel('C', 10, 30, 'Brake');
+            brick.MoveMotor('C', 10);
             
         case 'q'
             break;
