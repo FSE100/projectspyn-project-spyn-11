@@ -13,9 +13,9 @@ On our grading sheet, we earned full credit in all categories:
 |Vehicle Volume | 390 in<sup>3</sup> |
 |---------------|--------------------|
 
-| Pick up | Drop off |
-|---------|----------|
-| 1:18    | 2:51     |
+| Pick up time | Drop off time |
+|--------------|---------------|
+| 1:18         | 2:51          |
 
 |Item|Score|
 |----|-----|
